@@ -1,7 +1,6 @@
 import React from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Call from './Call';
-import PropTypes from 'prop-types';
 
 export interface IRat {
     commander_name: string
@@ -27,7 +26,3 @@ export default function Rat({rat}: { rat: IRat }) {
         </div>
     );
 }
-
-Rat.propTypes = {
-    rat: PropTypes.object,
-};

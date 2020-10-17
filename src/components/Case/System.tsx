@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import PropTypes from 'prop-types';
 
 export interface ISystem {
     name: string
@@ -22,7 +21,3 @@ export default function System({system}: { system: ISystem }) {
         </>
     );
 }
-
-System.propTypes = {
-    system: PropTypes.object,
-};

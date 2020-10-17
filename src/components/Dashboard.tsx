@@ -3,8 +3,7 @@ import Case from './Case';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import PropTypes from 'prop-types';
-import {ICase} from "./Case/Case";
+import {ICase} from "./Case";
 
 // function getFreeCaseNumber(cases: ICase[]): number {
 //     return cases.reduce((max: number, theCase: ICase) => {
@@ -28,7 +27,3 @@ export default function Dashboard({dispatch, cases}: { dispatch: Dispatch<any>, 
         </Container>
     );
 }
-
-Dashboard.propTypes = {
-    cases: PropTypes.arrayOf(PropTypes.object),
-};

@@ -6,7 +6,6 @@ import Notes from './Notes';
 import Header from './Header';
 import Rats from './Rats';
 import Call from './Call';
-import PropTypes from 'prop-types';
 import {IRat} from "./Rat";
 
 export interface ICase {
@@ -45,7 +44,3 @@ export default function Case({'case': theCase}: { case: ICase }) {
         </Card>
     );
 }
-
-Case.propTypes = {
-    'case': PropTypes.object,
-};
