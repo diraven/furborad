@@ -1,6 +1,7 @@
 import React, {useReducer} from 'react';
 import './App.css';
 import initialState, {IState} from "./InitialState";
+import Dashboard from "./components/Dashboard";
 
 type StateAction = {
     type: string;
@@ -56,7 +57,7 @@ function App() {
                 rel='stylesheet'
                 href='https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css'
             />
-            {/*<Dashboard dispatch={dispatch} cases={state.cases}/>*/}
+            <Dashboard dispatch={dispatch} cases={state.cases}/>
         </>
     );
 }

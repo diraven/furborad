@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default function Rats({rats}: {rats: IRat[]}) {
     return (
         <Card.Text>
-            {React.Children.map(rats, (r) => <Rat rat={r}/>)}
+            {rats.map((r) => <Rat key={r.irc_nick} rat={r}/>)}
         </Card.Text>
     );
 }
