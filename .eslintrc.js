@@ -26,5 +26,6 @@ module.exports = {
         'indent': ['error', 4],
         'require-jsdoc': 0,
         'comma-dangle': ['error', 'always-multiline'],
+        'quotes': ['error', 'single', {'avoidEscape': true}],
     },
 };

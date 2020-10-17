@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import {ICase} from "./Case";
+import {ICase} from './Case';
 
 export default function Header({'case': theCase}: { case: ICase }) {
     return (
