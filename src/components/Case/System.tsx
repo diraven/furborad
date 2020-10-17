@@ -6,8 +6,12 @@ export interface ISystem {
     landmark: string
 }
 
+interface ISystemProps {
+    system: ISystem
+}
 
-export default function System({system}: { system: ISystem }) {
+export default function System(props: ISystemProps) {
+    const {system} = props
     const className = 'mb-2 ' + (
         system.landmark ? 'text-success' : 'text-warning'
     );

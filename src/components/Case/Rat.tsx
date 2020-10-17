@@ -11,7 +11,12 @@ export interface IRat {
     fuel: boolean | null
 }
 
-export default function Rat({rat}: { rat: IRat }) {
+interface IRatProps {
+    rat: IRat
+}
+
+export default function Rat(props: IRatProps) {
+    const {rat} = props
     return (
         <div className={'p-1'}>
             <p className={'m-0'}>{rat.irc_nick}</p>

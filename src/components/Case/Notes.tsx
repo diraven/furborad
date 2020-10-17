@@ -2,7 +2,12 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 
-export default function Notes({notes}: { notes: string[] }) {
+interface INotesProps {
+    notes: string[]
+}
+
+export default function Notes(props: INotesProps) {
+    const {notes} = props
     return (
         <>
             <div className='pre-scrollable border border-dark' style={{'height': 300}}>

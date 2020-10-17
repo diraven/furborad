@@ -23,7 +23,12 @@ export interface ICase {
     notes: string[]
 }
 
-export default function Case({'case': theCase}: { case: ICase }) {
+interface ICaseProps {
+    case: ICase
+}
+
+export default function Case(props: ICaseProps) {
+    const {'case': theCase} = props
     return (
         <Card border={'primary'}>
             <Header case={theCase}/>

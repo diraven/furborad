@@ -1,7 +1,13 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-export default function Call({name, value}: { name: string, value: boolean | null }) {
+interface ICallProps {
+    name: string
+    value: boolean | null
+}
+
+export default function Call(props: ICallProps) {
+    const {name, value} = props
     let variant;
     switch (value) {
         case true:

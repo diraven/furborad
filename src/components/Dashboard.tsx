@@ -13,16 +13,17 @@ import Col from 'react-bootstrap/Col';
 //     }, 100) + 1;
 // }
 interface IDashboardProps {
-    dispatch: Dispatch<any>,
-    cases: ICase[],
+    dispatch: Dispatch<any>
+    cases: ICase[]
 }
 
 export default function Dashboard(props: IDashboardProps) {
+    const {dispatch, cases} = props
     return (
         <Container className="pt-5">
             <Row>
                 {
-                    props.cases.map(
+                    cases.map(
                         (c) => <Col className={'p-1'} md={4}><Case key={c.case_number} case={c}/></Col>
                     )
                 }
