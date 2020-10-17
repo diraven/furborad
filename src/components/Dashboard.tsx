@@ -1,9 +1,8 @@
 import React, {Dispatch} from 'react';
-import Case from './Case';
+import Case, {ICase} from './Case';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {ICase} from "./Case";
 
 // function getFreeCaseNumber(cases: ICase[]): number {
 //     return cases.reduce((max: number, theCase: ICase) => {
@@ -13,13 +12,17 @@ import {ICase} from "./Case";
 //         return max
 //     }, 100) + 1;
 // }
+interface IDashboardProps {
+    dispatch: Dispatch<any>,
+    cases: ICase[],
+}
 
-export default function Dashboard({dispatch, cases}: { dispatch: Dispatch<any>, cases: ICase[] }) {
+export default function Dashboard(props: IDashboardProps) {
     return (
         <Container className="pt-5">
             <Row>
                 {
-                    cases.map(
+                    props.cases.map(
                         (c) => <Col className={'p-1'} md={4}><Case key={c.case_number} case={c}/></Col>
                     )
                 }

@@ -7,6 +7,11 @@ module.exports = {
         'plugin:react/recommended',
         'google',
     ],
+    'settings': {
+        'react': {
+            'version': 'detect',
+        },
+    },
     'parserOptions': {
         'ecmaFeatures': {
             'jsx': true,
@@ -20,5 +25,6 @@ module.exports = {
     'rules': {
         'indent': ['error', 4],
         'require-jsdoc': 0,
+        'comma-dangle': ['error', 'always-multiline'],
     },
 };
