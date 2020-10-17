@@ -1,34 +1,32 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import CaseRat from "../CaseRat";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import System from "./System";
+import Notes from "./Notes";
+import Header from "./Header";
+import Rats from "./Rats";
+import Call from "./Call";
 
-function Case() {
+export default function Case({"case": the_case}) {
     return (
         <Card border={"primary"}>
+            <Header case={the_case}/>
             <Card.Body>
-                <Card.Title><strong>#1</strong> DiRaven</Card.Title>
-                <Card.Subtitle className="mb-2">PC EN</Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-warning">COL 285 SECTOR JT-H C10-3</Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-muted">35 ly from fuelum</Card.Subtitle>
-                <strong>Rats</strong>
-                <Card.Text>
-                    <CaseRat/>
-                    <CaseRat/>
-                    <CaseRat/>
+                <System system={the_case.system}/>
 
-                    <Form>
-                        <Form.Group controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Example textarea</Form.Label>
-                            <Form.Control as="textarea" rows="3" value={"chat line 1\nchat line 2"}/>
-                        </Form.Group>
-                    </Form>
-                </Card.Text>
+                <ButtonGroup size={"sm"} aria-label="Basic example">
+                    <Call name={"mmconf"} value={the_case.mmconf}/>
+                    <Call name={"sysconf"} value={the_case.sysconf}/>
+                    <Call name={"prep"} value={the_case.prep}/>
+                    <Call name={"fuel"} value={the_case.prep}/>
+                </ButtonGroup>
+
+                <Rats rats={the_case.rats}/>
+                <Notes notes={the_case.notes}/>
+
                 {/*<Card.Link href="#">Card Link</Card.Link>*/}
                 {/*<Card.Link href="#">Another Link</Card.Link>*/}
             </Card.Body>
         </Card>
     );
 }
-
-export default Case;
