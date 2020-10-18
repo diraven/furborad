@@ -10,7 +10,7 @@ export default function Header(props: IHeaderProps) {
     const {'case': theCase} = props
     return (
         <Card.Header>
-            <strong>#1</strong>&nbsp;
+            <strong>#{theCase.case_number}</strong>&nbsp;
             {theCase.platform} |&nbsp;
             {theCase.language} |&nbsp;
             {theCase.commander_name}
