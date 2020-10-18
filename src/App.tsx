@@ -2,55 +2,40 @@ import React, {useReducer} from 'react';
 import './App.css';
 import initialState, {IState} from "./InitialState";
 import Dashboard from "./components/Dashboard";
+import update from 'immutability-helper';
 
 type StateAction = {
     type: string;
-    payload: any;
+    payload: setRatCallActionPayload;
+}
+
+interface setRatCallActionPayload {
+    case_id: number
+    rat_id: number
+    name: string
+    value: boolean | null
 }
 
 const ACTIONS = {
-    CREATE_CASE: 'CREATE_CASE',
-    DELETE_CASE: 'DELETE_CASE',
-    CREATE_NOTE: 'CREATE_NOTE',
+    SET_RAT_CALL: 'SET_RAT_CALL',
 };
+
+export {ACTIONS};
 
 function reducer(state: IState, action: StateAction): IState {
     switch (action.type) {
-        case ACTIONS.CREATE_NOTE:
-            break;
+        case ACTIONS.SET_RAT_CALL:
+            const {case_id, rat_id, name, value} = action.payload;
+            return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
         default:
             console.log('Unhandled action: ' + action.type);
+            return state
     }
-    return state
 }
 
 
 function App() {
     const [state, dispatch] = useReducer(reducer, initialState);
-
-    // function addMessage(case_id, author, text) {
-    //     dispatch({
-    //         type: ACTIONS.CREATE_MESSAGE,
-    //         payload: {author: "test1", text: 'test2'}
-    //     })
-    // }
-    //
-    // function updateVeryNestedField(state, action) {
-    //     return {
-    //         ...state,
-    //         first: {
-    //             ...state.first,
-    //             second: {
-    //                 ...state.first.second,
-    //                 [action.someId]: {
-    //                     ...state.first.second[action.someId],
-    //                     fourth: action.someValue
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-
     return (
         <>
             <link

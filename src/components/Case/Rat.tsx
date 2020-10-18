@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Dispatch} from 'react';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Call from './Call';
 import {ICase} from "./Case";
 
 export interface IRat {
+    [key: string]: string | boolean | null
     commander_name: string
     irc_nick: string
     fr: boolean | null
@@ -16,25 +17,28 @@ export interface IRat {
 }
 
 interface IRatProps {
+    dispatch: Dispatch<any>
+    case_id: number
     case: ICase
+    rat_id: number
     rat: IRat
 }
 
 export default function Rat(props: IRatProps) {
-    const {rat, case: theCase} = props
+    const {dispatch, case_id, case: theCase, rat_id, rat} = props
     return (
         <div className={'p-1'}>
             <p className={'m-0'}>{rat.irc_nick}</p>
             <p className={'m-0'}>
                 <ButtonGroup size={'sm'} aria-label='Basic example'>
-                    <Call name={'fr'} value={rat.fr}/>
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'fr'} value={rat.fr}/>
                     {theCase.cr &&
-                    <Call name={'mmconf'} value={rat.mmc}/> &&
-                    <Call name={'sys'} value={rat.sys}/> &&
-                    <Call name={'pos'} value={rat.pos}/>}
-                    <Call name={'wr'} value={rat.wr}/>
-                    <Call name={'bc'} value={rat.bc}/>
-                    <Call name={'fuel'} value={rat.fuel}/>
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'mmconf'} value={rat.mmc}/> &&
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'sys'} value={rat.sys}/> &&
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'pos'} value={rat.pos}/>}
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'wr'} value={rat.wr}/>
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'bc'} value={rat.bc}/>
+                    <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'fuel'} value={rat.fuel}/>
                 </ButtonGroup>
             </p>
         </div>
