@@ -26,7 +26,7 @@ export default function Call(props: ICallProps) {
     return (
         <Button variant={variant} onClick={() => {
             dispatch({
-                type: ACTIONS.SET_RAT_CALL,
+                type: ACTIONS.SET_RAT_PROPERTY,
                 payload: {
                     case_id: case_id,
                     rat_id: rat_id,

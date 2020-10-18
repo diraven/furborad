@@ -28,7 +28,7 @@ export default function Case(props: ICaseProps) {
     const {dispatch, case_id, 'case': theCase} = props
     return (
         <Card border={'primary'}>
-            <Header case={theCase}/>
+            <Header dispatch={dispatch} case_id={case_id} case={theCase}/>
             <Card.Body>
                 <System system={theCase.system}/>
                 <Rats dispatch={dispatch} case_id={case_id} case={theCase} rats={theCase.rats}/>

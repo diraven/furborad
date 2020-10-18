@@ -28,8 +28,8 @@ export default function Rat(props: IRatProps) {
     const {dispatch, case_id, case: theCase, rat_id, rat} = props
     return (
         <div className={'p-1'}>
-            <p className={'m-0'}>{rat.irc_nick}</p>
-            <p className={'m-0'}>
+            <div className={'m-0'}>{rat.irc_nick}</div>
+            <div className={'m-0'}>
                 <ButtonGroup size={'sm'} aria-label='Basic example'>
                     <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'fr'} value={rat.fr}/>
                     {theCase.cr &&
@@ -40,7 +40,7 @@ export default function Rat(props: IRatProps) {
                     <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'bc'} value={rat.bc}/>
                     <Call dispatch={dispatch} case_id={case_id} rat_id={rat_id} name={'fuel'} value={rat.fuel}/>
                 </ButtonGroup>
-            </p>
+            </div>
         </div>
     );
 }

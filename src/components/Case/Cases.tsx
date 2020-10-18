@@ -17,8 +17,8 @@ export default function Cases(props: ICasesProps) {
     return (
         <Container className="pt-5">
             <Row>
-                {cases.map((x, i) => <Col className={'p-1'} md={4}>
-                    <Case key={i} dispatch={dispatch} case_id={i} case={x}/>
+                {cases.map((x, i) => <Col key={i} className={'p-1'} md={4}>
+                    <Case dispatch={dispatch} case_id={i} case={x}/>
                 </Col>)}
             </Row>
         </Container>

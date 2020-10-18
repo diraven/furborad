@@ -16,8 +16,8 @@ interface IRatsProps {
 export default function Rats(props: IRatsProps) {
     const {dispatch, case_id, case: theCase, rats} = props
     return (
-        <Card.Text>
+        <>
             {rats.map((x, i) => <Rat key={i} dispatch={dispatch} case_id={case_id} case={theCase} rat_id={i} rat={x}/>)}
-        </Card.Text>
+        </>
     );
 }
