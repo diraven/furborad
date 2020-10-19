@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  webircgateway:
+    build: webircgateway
+    ports:
+      - 8010:8010
+    volumes:
+      - ./webircgateway/config.conf:/app/config.conf
+    command: ./kiwiirc --config=config.conf

@@ -24,3 +24,5 @@ build/
 .idea
 .yarn
 .yarnrc.yml
+
+webircgateway/config.conf
