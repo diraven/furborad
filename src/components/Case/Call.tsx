@@ -4,14 +4,14 @@ import {ACTIONS} from "../../App";
 
 interface ICallProps {
     dispatch: Dispatch<any>
-    case_id: number
-    rat_id: number
+    caseId: number
+    ratId: string
     name: string
     value: boolean | null
 }
 
 export default function Call(props: ICallProps) {
-    const {dispatch, case_id, rat_id, name, value} = props
+    const {dispatch, caseId, ratId, name, value} = props
     let variant;
     switch (value) {
         case true:
@@ -28,8 +28,8 @@ export default function Call(props: ICallProps) {
             dispatch({
                 type: ACTIONS.SET_RAT_PROPERTY,
                 payload: {
-                    case_id: case_id,
-                    rat_id: rat_id,
+                    caseId: caseId,
+                    ratId: ratId,
                     name: name,
                     value: !value,
                 },

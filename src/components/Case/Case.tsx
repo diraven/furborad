@@ -1,38 +1,32 @@
 import React, {Dispatch} from 'react';
 import Card from 'react-bootstrap/Card';
-import System, {ISystem} from './System';
-import Notes from './Notes';
+import System from './System';
 import Header from './Header';
-import Rats, {IRats} from './Rats';
-
-export interface ICase {
-    [key: string]: string | number | boolean | null | string[] | ISystem | IRats
-    case_number: number
-    commander_name: string
-    irc_nick: string
-    system: ISystem
-    language: string
-    platform: string
-    cr: boolean | null
-    rats: IRats
-    notes: string[]
-}
+import Messages from "./Messages";
+import Rat from "./Rat";
+import ICase from "../../state/Case";
+import IRat from "../../state/Rat";
 
 interface ICaseProps {
     dispatch: Dispatch<any>
-    case_id: number
     case: ICase
+    rats: IRat[]
+    messages: string[]
 }
 
 export default function Case(props: ICaseProps) {
-    const {dispatch, case_id, 'case': theCase} = props
+    const {dispatch, 'case': theCase, rats, messages} = props
     return (
         <Card border={'primary'}>
-            <Header dispatch={dispatch} case_id={case_id} case={theCase}/>
+            <Header dispatch={dispatch} case={theCase}/>
             <Card.Body>
-                <System system={theCase.system}/>
-                <Rats dispatch={dispatch} case_id={case_id} case={theCase} rats={theCase.rats}/>
-                <Notes notes={theCase.notes}/>
+                <System name={theCase.systemName} landmark={theCase.systemLandmark}/>
+                {
+                    rats.map((x) =>
+                        <Rat key={theCase.caseNumber} dispatch={dispatch} case={theCase} rat={x}/>
+                    )
+                }
+                <Messages messages={messages}/>
             </Card.Body>
         </Card>
     );

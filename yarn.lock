@@ -1387,12 +1387,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.4.2, @babel/runtime@npm:^7.5.1, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.3":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.5.1":
   version: 7.12.0
   resolution: "@babel/runtime@npm:7.12.0"
   dependencies:
     regenerator-runtime: ^0.13.4
   checksum: 22362076a3e957be517f8bf3e7891a4b160e8f516dd37b62aa7ffefa5b17cab35189965f694be69c073796a62040d1dbad6b4b26d8bd31f616d66545f6701b93
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.4.2, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.6.3":
+  version: 7.12.1
+  resolution: "@babel/runtime@npm:7.12.1"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: 979d1c099c386031f96a952ee903e7bc3c60ae6e4eefe2bf49e4224014542d4ac2b1e2fb708031da36501a3842d4442dfdab38ab359ab3f46634b3c7cb5f6c6e
   languageName: node
   linkType: hard
 
@@ -2229,7 +2238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^16.9.11, @types/react@npm:^16.9.35":
+"@types/react@npm:*":
   version: 16.9.52
   resolution: "@types/react@npm:16.9.52"
   dependencies:
@@ -2239,7 +2248,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^16.9.53":
+"@types/react@npm:^16.9.11, @types/react@npm:^16.9.35, @types/react@npm:^16.9.53":
   version: 16.9.53
   resolution: "@types/react@npm:16.9.53"
   dependencies:

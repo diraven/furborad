@@ -1,22 +1,20 @@
 import React, {Dispatch} from 'react';
 import Card from 'react-bootstrap/Card';
-import {ICase} from './Case';
-import {ACTIONS} from "../../App";
+import ICase from "../../state/Case";
 
 interface IHeaderProps {
     'dispatch': Dispatch<any>
-    'case_id': number
     'case': ICase
 }
 
 export default function Header(props: IHeaderProps) {
-    const {dispatch, case_id, 'case': theCase} = props
+    const {dispatch, 'case': theCase} = props
     return (
         <Card.Header>
-            <strong>#{theCase.case_number}</strong>&nbsp;
+            <strong>#{theCase.caseNumber}</strong>&nbsp;
             {theCase.platform} |&nbsp;
             {theCase.language} |&nbsp;
-            {theCase.commander_name}
+            {theCase.cmdr}
         </Card.Header>
     );
 }

@@ -1,25 +1,21 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 
-export interface ISystem {
-    name: string
-    landmark: string
-}
-
 interface ISystemProps {
-    system: ISystem
+    name: string
+    landmark?: string
 }
 
 export default function System(props: ISystemProps) {
-    const {system} = props
+    const {name, landmark} = props
     const className = 'mb-2 ' + (
-        system.landmark ? 'text-success' : 'text-warning'
+        landmark ? 'text-success' : 'text-warning'
     );
     return (
         <>
-            <Card.Subtitle className={className}>{system.name}</Card.Subtitle>
+            <Card.Subtitle className={className}>{name}</Card.Subtitle>
             {
-                system.landmark &&
+                landmark &&
                 <Card.Subtitle className='mb-2 text-muted'>35 ly from fuelum</Card.Subtitle>
             }
         </>

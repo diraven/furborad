@@ -1,9 +1,9 @@
 import React, {useReducer} from 'react';
 import './App.css';
-import initialState, {IState} from "./InitialState";
 import Dashboard from "./components/Dashboard";
 import update from 'immutability-helper';
 import IRCClient from "./components/IRCClient";
+import State, {IState} from "./state/State";
 
 type StateAction = {
     type: string
@@ -38,8 +38,9 @@ function reducer(state: IState, action: StateAction): IState {
             // return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
             return state
         case ACTIONS.SET_RAT_PROPERTY:
-            const {case_id, rat_id, name, value} = action.payload as setRatPropertyActionPayload;
-            return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
+            // const {case_id, rat_id, name, value} = action.payload as setRatPropertyActionPayload;
+            // return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
+            return state
         default:
             console.log('Unhandled action: ' + action.type);
             return state
@@ -48,14 +49,19 @@ function reducer(state: IState, action: StateAction): IState {
 
 
 function App() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, State);
     return (
         <>
             <link
                 rel='stylesheet'
                 href='https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css'
             />
-            <Dashboard dispatch={dispatch} cases={state.cases}/>
+            <Dashboard
+                dispatch={dispatch}
+                cases={state.cases}
+                rats={state.rats}
+                messages={state.messages}
+            />
             <IRCClient dispatch={dispatch}/>
         </>
     );
