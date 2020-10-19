@@ -26,39 +26,37 @@ export default function Dashboard(props: IDashboardProps) {
     return (
         <div className="container-fluid h-100">
             <div className="row h-100">
-                <aside className="col-12 col-xl-2 col-md-4 p-0">
-                    <nav className="h-100 w-100">
-                        <Messages messages={messages}/>
-                    </nav>
-                </aside>
-                <main className="col">
-                    <Container fluid>
-                        <Row>
-                            {cases.map(
-                                (theCase) =>
-                                    <Col key={theCase.caseNumber} className={'p-1'} xl={3} lg={4} md={6} sm={12}>
-                                        <Case
-                                            dispatch={dispatch}
-                                            case={theCase}
-                                            rats={rats.filter(rat => theCase.caseNumber === rat.caseNumber)}
-                                            messages={messages.filter(message =>
-                                                [
-                                                    ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
-                                                        rat => rat.ircNick
-                                                    ),
-                                                    ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
-                                                        rat => rat.cmdr
-                                                    ),
-                                                    `#${theCase.caseNumber}`,
-                                                    `${theCase.ircNick}`,
-                                                    `${theCase.cmdr}`,
-                                                ].some(sub => message.toLowerCase().includes(sub.toLowerCase()))
-                                            )}
-                                        />
-                                    </Col>
+                <div className="col-12 col-xl-6 h-100">
+                    <Messages messages={messages}/>
+                </div>
+                <main className="col overflow-auto h-100">
+                    <table className="table cases w-100">
+                        <tbody>
+                            {cases.map((theCase) =>
+                                <Case
+                                    key={theCase.caseNumber}
+                                    dispatch={dispatch}
+                                    case={theCase}
+                                    rats={rats.filter(rat => theCase.caseNumber === rat.caseNumber)}
+                                    messages={messages.filter(message =>
+                                        [
+                                            ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
+                                                rat => rat.ircNick
+                                            ),
+                                            ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
+                                                rat => rat.cmdr
+                                            ),
+                                            `#${theCase.caseNumber}`,
+                                            `${theCase.ircNick}`,
+                                            `${theCase.cmdr}`,
+                                        ].some(sub => message.toLowerCase().includes(sub.toLowerCase()))
+                                    )}
+                                />
                             )}
-                        </Row>
-                    </Container>
+                        </tbody>
+                    </table>
+                    <Row>
+                    </Row>
                 </main>
             </div>
         </div>

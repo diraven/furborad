@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import Table from 'react-bootstrap/Table';
 
 interface IMessagesProps {
@@ -7,23 +7,35 @@ interface IMessagesProps {
 
 export default function Messages(props: IMessagesProps) {
     const {messages} = props
+
+    const scrollableRef = useRef(null)
+
+    const scrollToBottom = () => {
+        if (scrollableRef.current) {
+            // @ts-ignore
+            scrollableRef.current.scrollTop = scrollableRef.current.scrollHeight;
+        }
+    }
+
+    useEffect(scrollToBottom, [messages]);
+
     return (
-        <>
-            <div className='pre-scrollable h-100 w-100 border border-dark messages'>
-                <Table striped borderless hover size='sm' className='m-0'>
-                    <tbody>
-                        {
+        <div ref={scrollableRef}  className='overflow-auto border border-primary messages'>
+            <Table striped borderless hover size='sm' className='m-0'>
+                <tbody>
+                    {
+                        (
                             messages.length > 0 &&
                             React.Children.map(messages, (n) => <tr>
                                 <td>{n}</td>
-                            </tr>) ||
-                            <tr>
-                                <td>No events</td>
-                            </tr>
-                        }
-                    </tbody>
-                </Table>
-            </div>
-        </>
+                            </tr>)
+                        ) ||
+                        <tr>
+                            <td>No events</td>
+                        </tr>
+                    }
+                </tbody>
+            </Table>
+        </div>
     );
 }

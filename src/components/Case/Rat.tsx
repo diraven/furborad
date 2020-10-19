@@ -14,9 +14,9 @@ interface IRatProps {
 export default function Rat(props: IRatProps) {
     const {dispatch, case: theCase, rat} = props
     return (
-        <div className={'p-1'}>
-            <div className={'m-0'}>{rat.ircNick}</div>
-            <div className={'m-0'}>
+        <>
+            {rat.ircNick}
+            <div className='m-0 p-0'>
                 <ButtonGroup size={'sm'} aria-label='Basic example'>
                     <Call dispatch={dispatch} caseId={theCase.caseNumber} ratId={rat.ircNick} name={'fr'}
                         value={rat.fr}/>
@@ -35,6 +35,6 @@ export default function Rat(props: IRatProps) {
                         value={rat.fuel}/>
                 </ButtonGroup>
             </div>
-        </div>
+        </>
     );
 }
