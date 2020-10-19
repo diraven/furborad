@@ -36,18 +36,18 @@ export default function Case(props: ICaseProps) {
         <Popover className='case-context' id={`case-${theCase.caseNumber}-context`}>
             <Popover.Title as="h3">Case #{theCase.caseNumber}</Popover.Title>
             <Popover.Content>
-                <Messages messages={messages.reverse()}/>
+                <Messages messages={messages.slice().reverse()}/>
             </Popover.Content>
         </Popover>
     );
 
     return (
-        <tr className='case'>
+        <tr className={`case${theCase.cr ? ' border border-danger' : ''}`}>
             <td style={{width: 200}}>
                 <OverlayTrigger rootClose trigger="click" placement="right" overlay={popover}>
                     <Button className='float-right' variant='primary' size='sm'>context</Button>
                 </OverlayTrigger>
-                <h1>
+                <h1 className={theCase.cr ? ' text-danger' : ''}>
                     #{theCase.caseNumber}
                 </h1>
                 {theCase.cmdr}
@@ -55,15 +55,20 @@ export default function Case(props: ICaseProps) {
                 <p className={`m-0 ${theCase.systemLandmark ? 'text-success' : 'text-warning'}`}>{theCase.systemName}</p>
                 {theCase.systemLandmark && <p className='text-muted m-0'>{theCase.systemLandmark}</p>}
             </td>
-            <td  style={{width: 200}}>
-                {
+            <td style={{width: 200}}>
+                {(rats.length > 0 &&
                     rats.map((x) =>
                         <Rat key={theCase.caseNumber} dispatch={dispatch} case={theCase} rat={x}/>
                     )
-                }
+                ) || (
+                    <Messages messages={messages.filter(msg => msg.match(/(\d+j|stdn)/i))}/>
+                )}
             </td>
             <td>
-                Suggestions: !pcwr-en !pcwr-ru
+                <Button size='sm' variant='primary'>!pcwr-en</Button>
+                <Button size='sm' variant='primary'>!pcwr-de</Button>
+                <Button size='sm' variant='primary'>!pcquit</Button>
+                <Button size='sm' variant='primary'>!pcquit-de</Button>
             </td>
         </tr>
     );
