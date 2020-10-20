@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 // @ts-ignore
 import IRC from 'irc-framework';
 import IIRCUser from "../state/IRCUser";
@@ -36,9 +36,6 @@ interface IIRCClientProps {
 
 function formatMessage(users: IIRCUser[], msg: IIRCMessage): string {
     let user = users.find(user => user.nick === msg.nick)
-    console.log(users)
-    console.log(msg.nick)
-    console.log(user)
     let prefix = ' '
     if (user) {
         if (user.channel_modes.includes('q')) {
@@ -66,13 +63,13 @@ export default function IRCClient(props: IIRCClientProps) {
         client.on('connected', function (e: any) {
             client.join(CREDENTIALS.channel);
             client.who('*', (x: any) => {
-                users = x.users
+                users = x.users  // eslint-disable-line
                 setUsers(users)
             })
         })
         client.on('join', function (e: any) {
             client.who('*', (x: any) => {
-                users = x.users
+                users = x.users  // eslint-disable-line
                 setUsers(users)
             })
         })

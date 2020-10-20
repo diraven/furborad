@@ -9,6 +9,7 @@ interface ICaseProps {
     case: ICase
     rats: IRat[]
     messages: string[]
+    setRatProperty: (ircNick: string, name: string, value: any) => void
 }
 
 function formatPlatform(platform: string): JSX.Element {
@@ -29,7 +30,7 @@ function formatPlatform(platform: string): JSX.Element {
 }
 
 export default function Case(props: ICaseProps) {
-    const {'case': theCase, rats, messages} = props
+    const {'case': theCase, rats, messages, setRatProperty} = props
 
     const popover = (
         <Popover className='case-context' id={`case-${theCase.caseNumber}-context`}>
@@ -54,13 +55,13 @@ export default function Case(props: ICaseProps) {
                 <p className={`m-0 ${theCase.systemLandmark ? 'text-success' : 'text-warning'}`}>{theCase.systemName}</p>
                 {theCase.systemLandmark && <p className='text-muted m-0'>{theCase.systemLandmark}</p>}
             </td>
-            <td style={{width: 200}}>
+            <td style={{width: 300}}>
                 {(rats.length > 0 &&
                     rats.map((rat) =>
-                        <Rat key={rat.ircNick} case={theCase} rat={rat}/>
+                        <Rat key={rat.ircNick} case={theCase} rat={rat} setRatProperty={setRatProperty}/>
                     )
                 ) || (
-                    <Messages messages={messages.filter(msg => msg.match(/(\d+j|stdn)/i))}/>
+                    <Messages messages={messages.filter(msg => msg.match(/(\d+j|stdn|jumps?)/i))}/>
                 )}
             </td>
             <td>

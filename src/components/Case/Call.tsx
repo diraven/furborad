@@ -1,15 +1,16 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import IRat from "../../state/Rat";
 
 interface ICallProps {
-    caseId: number
-    ratId: string
+    rat: IRat
     name: string
     value: boolean | null
+    setRatProperty: (ircNick: string, name: string, value: any) => void
 }
 
 export default function Call(props: ICallProps) {
-    const {caseId, ratId, name, value} = props
+    const {rat, name, value, setRatProperty} = props
     let variant;
     switch (value) {
         case true:
@@ -23,15 +24,7 @@ export default function Call(props: ICallProps) {
     }
     return (
         <Button variant={variant} onClick={() => {
-            // dispatch({
-            //     type: ACTIONS.SET_RAT_PROPERTY,
-            //     payload: {
-            //         caseId: caseId,
-            //         ratId: ratId,
-            //         name: name,
-            //         value: !value,
-            //     },
-            // });
+            setRatProperty(rat.ircNick, name, !value)
         }}>{name}</Button>
     );
 }
