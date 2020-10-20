@@ -1,5 +1,4 @@
-import React, {Dispatch} from 'react';
-import {Col, Container, Row} from "react-bootstrap";
+import React from 'react';
 import Messages from "./Case/Messages";
 import IRat from "../state/Rat";
 import ICase from "../state/Case";
@@ -15,16 +14,15 @@ import Case from "./Case";
 // }
 
 interface IDashboardProps {
-    dispatch: Dispatch<any>
     cases: ICase[]
     rats: IRat[]
     messages: string[]
 }
 
 export default function Dashboard(props: IDashboardProps) {
-    const {dispatch, cases, rats, messages} = props
+    const {cases, rats, messages} = props
     return (
-        <div className="container-fluid h-100">
+        <div className="container h-100">
             <div className="row h-100">
                 <div className="col-12 col-xl-6 h-100">
                     <Messages messages={messages}/>
@@ -35,7 +33,6 @@ export default function Dashboard(props: IDashboardProps) {
                             {cases.map((theCase) =>
                                 <Case
                                     key={theCase.caseNumber}
-                                    dispatch={dispatch}
                                     case={theCase}
                                     rats={rats.filter(rat => theCase.caseNumber === rat.caseNumber)}
                                     messages={messages.filter(message =>
@@ -55,8 +52,6 @@ export default function Dashboard(props: IDashboardProps) {
                             )}
                         </tbody>
                     </table>
-                    <Row>
-                    </Row>
                 </main>
             </div>
         </div>

@@ -1,9 +1,7 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {ACTIONS} from "../../App";
 
 interface ICallProps {
-    dispatch: Dispatch<any>
     caseId: number
     ratId: string
     name: string
@@ -11,7 +9,7 @@ interface ICallProps {
 }
 
 export default function Call(props: ICallProps) {
-    const {dispatch, caseId, ratId, name, value} = props
+    const {caseId, ratId, name, value} = props
     let variant;
     switch (value) {
         case true:
@@ -25,15 +23,15 @@ export default function Call(props: ICallProps) {
     }
     return (
         <Button variant={variant} onClick={() => {
-            dispatch({
-                type: ACTIONS.SET_RAT_PROPERTY,
-                payload: {
-                    caseId: caseId,
-                    ratId: ratId,
-                    name: name,
-                    value: !value,
-                },
-            });
+            // dispatch({
+            //     type: ACTIONS.SET_RAT_PROPERTY,
+            //     payload: {
+            //         caseId: caseId,
+            //         ratId: ratId,
+            //         name: name,
+            //         value: !value,
+            //     },
+            // });
         }}>{name}</Button>
     );
 }

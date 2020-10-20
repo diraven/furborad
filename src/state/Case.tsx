@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default interface ICase {
-    [key: number]: string | number | boolean | null
+    [key: string]: string | number | boolean | null
 
     caseNumber: number
     cmdr: string

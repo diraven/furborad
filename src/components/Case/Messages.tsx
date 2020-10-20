@@ -20,7 +20,7 @@ export default function Messages(props: IMessagesProps) {
     useEffect(scrollToBottom, [messages]);
 
     return (
-        <div ref={scrollableRef}  className='overflow-auto border border-primary messages'>
+        <div ref={scrollableRef}  className='overflow-auto border border-primary messages h-100'>
             <Table striped borderless hover size='sm' className='m-0'>
                 <tbody>
                     {

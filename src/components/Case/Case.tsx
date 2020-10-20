@@ -1,4 +1,4 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import Messages from "./Messages";
 import Rat from "./Rat";
 import ICase from "../../state/Case";
@@ -6,7 +6,6 @@ import IRat from "../../state/Rat";
 import {Button, OverlayTrigger, Popover} from "react-bootstrap";
 
 interface ICaseProps {
-    dispatch: Dispatch<any>
     case: ICase
     rats: IRat[]
     messages: string[]
@@ -30,7 +29,7 @@ function formatPlatform(platform: string): JSX.Element {
 }
 
 export default function Case(props: ICaseProps) {
-    const {dispatch, 'case': theCase, rats, messages} = props
+    const {'case': theCase, rats, messages} = props
 
     const popover = (
         <Popover className='case-context' id={`case-${theCase.caseNumber}-context`}>
@@ -57,8 +56,8 @@ export default function Case(props: ICaseProps) {
             </td>
             <td style={{width: 200}}>
                 {(rats.length > 0 &&
-                    rats.map((x) =>
-                        <Rat key={theCase.caseNumber} dispatch={dispatch} case={theCase} rat={x}/>
+                    rats.map((rat) =>
+                        <Rat key={rat.ircNick} case={theCase} rat={rat}/>
                     )
                 ) || (
                     <Messages messages={messages.filter(msg => msg.match(/(\d+j|stdn)/i))}/>

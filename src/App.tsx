@@ -1,55 +1,18 @@
-import React, {useReducer} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Dashboard from "./components/Dashboard";
 import update from 'immutability-helper';
 import IRCClient from "./components/IRCClient";
-import State, {IState} from "./state/State";
-
-type StateAction = {
-    type: string
-    payload: setRatPropertyActionPayload | setCasePropertyActionPayload
-}
-
-interface setPropertyActionPayload {
-    name: string
-    value: any
-}
-
-interface setCasePropertyActionPayload extends setPropertyActionPayload {
-    case_id: number
-}
-
-interface setRatPropertyActionPayload extends setCasePropertyActionPayload {
-    rat_id: number
-}
-
-const ACTIONS = {
-    SET_RAT_PROPERTY: 'SET_RAT_PROPERTY',
-    SET_CASE_PROPERTY: 'SET_CASE_PROPERTY',
-};
-
-export {ACTIONS};
-
-function reducer(state: IState, action: StateAction): IState {
-    let newState
-    switch (action.type) {
-        case ACTIONS.SET_CASE_PROPERTY:
-            // const {case_id, name, value} = action.payload;
-            // return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
-            return state
-        case ACTIONS.SET_RAT_PROPERTY:
-            // const {case_id, rat_id, name, value} = action.payload as setRatPropertyActionPayload;
-            // return update(state, {cases: {[case_id]: {rats: {[rat_id]: {[name]: {$set: value}}}}}})
-            return state
-        default:
-            console.log('Unhandled action: ' + action.type);
-            return state
-    }
-}
+import State from "./state/State";
 
 
 function App() {
-    const [state, dispatch] = useReducer(reducer, State);
+    const [state, setState] = useState(State)
+
+    function addMessage(text: string) {
+        setState(state => update(state, {messages: {$push: [text]}}))
+    }
+
     return (
         <>
             <link
@@ -57,12 +20,11 @@ function App() {
                 href='https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/slate/bootstrap.min.css'
             />
             <Dashboard
-                dispatch={dispatch}
                 cases={state.cases}
                 rats={state.rats}
                 messages={state.messages}
             />
-            <IRCClient dispatch={dispatch}/>
+            <IRCClient addMessage={addMessage}/>
         </>
     );
 }

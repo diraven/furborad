@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default interface IRat {
-    [key: number]: string | boolean | null | number
+    [key: string]: string | boolean | null | number
 
     caseNumber: number
     cmdr: string
