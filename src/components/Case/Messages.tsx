@@ -6,14 +6,14 @@ interface IMessagesProps {
     messages: string[]
 }
 
-const formatters = [
-    [/\d+j/gi, '<strong class="text-info">$&</strong>'],
-    [/^[^:]+:/gi, '<strong class="text-info">$&</strong>'],
-    [/#\d+/gi, '<strong class="text-info">$&</strong>'],
-    [
-        /stdn|fr[+-]?|wr[+-]?|bc[+1]/gi,
-        '<strong class="text-info">$&</strong>',
-    ],
+const formatters: any = [
+    // [/\d+j/gi, '<strong class="text-info">$&</strong>'],
+    // [/^[^:]+:/gi, '<strong class="text-info">$&</strong>'],
+    // [/#\d+/gi, '<strong class="text-info">$&</strong>'],
+    // [
+    //     /stdn|fr[+-]?|wr[+-]?|bc[+1]/gi,
+    //     '<strong class="text-info">$&</strong>',
+    // ],
 ]
 function formatMessage(m: string): string {
     // @ts-ignore

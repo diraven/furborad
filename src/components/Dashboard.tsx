@@ -2,6 +2,7 @@ import React from 'react';
 import IRat from "../state/Rat";
 import ICase from "../state/Case";
 import Case from "./Case";
+import Messages from "./Case/Messages";
 
 // function getFreeCaseNumber(cases: ICase[]): number {
 //     return cases.reduce((max: number, theCase: ICase) => {
@@ -27,32 +28,39 @@ export default function Dashboard(props: IDashboardProps) {
         setRatProperty,
     } = props
     return (
-        <div className="container">
-            <table className="table cases">
-                <tbody>
-                    {cases.map((theCase) =>
-                        <Case
-                            key={theCase.caseNumber}
-                            case={theCase}
-                            rats={rats.filter(rat => theCase.caseNumber === rat.caseNumber)}
-                            messages={messages.filter(message =>
-                                [
-                                    ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
-                                        rat => rat.ircNick
-                                    ),
-                                    ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
-                                        rat => rat.cmdr
-                                    ),
-                                    `#${theCase.caseNumber}`,
-                                    `${theCase.ircNick}`,
-                                    `${theCase.cmdr}`,
-                                ].some(sub => message.toLowerCase().includes(sub.toLowerCase()))
+        <div className="container h-100">
+            <div className="row h-100">
+                <div className="col-12 col-xl-6 h-100">
+                    <Messages messages={messages}/>
+                </div>
+                <main className="col overflow-auto h-100">
+                    <table className="table cases w-100">
+                        <tbody>
+                            {cases.map((theCase) =>
+                                <Case
+                                    key={theCase.caseNumber}
+                                    case={theCase}
+                                    rats={rats.filter(rat => theCase.caseNumber === rat.caseNumber)}
+                                    messages={messages.filter(message =>
+                                        [
+                                            ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
+                                                rat => rat.ircNick
+                                            ),
+                                            ...rats.filter(rat => theCase.caseNumber === rat.caseNumber).map(
+                                                rat => rat.cmdr
+                                            ),
+                                            `#${theCase.caseNumber}`,
+                                            `${theCase.ircNick}`,
+                                            `${theCase.cmdr}`,
+                                        ].some(sub => message.toLowerCase().includes(sub.toLowerCase()))
+                                    )}
+                                    setRatProperty={setRatProperty}
+                                />
                             )}
-                            setRatProperty={setRatProperty}
-                        />
-                    )}
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </main>
+            </div>
         </div>
     );
 }
